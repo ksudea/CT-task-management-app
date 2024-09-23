@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!--head includes meta for responsive design-->
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task Dashboard</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="js/bootstrap.js"></script>
+
+</head>
+<body>
+
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light border-bottom border-body" data-bs-theme="light">
+        <!-- Navbar content -->
+        <div class="container-fluid py-1">
+            <a class="navbar-brand navbar-logo" href="home.html">
+                <img src="logo.png" alt="" width="72" height="48">
+              </a>          
+            <a class="navbar-brand" href="home.html">Tabbit</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link" href="home.html">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="dashboard.html">Dashboard</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="task-create.html">Add Task</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="register.html">Register</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active" href="login-page.html">Login</a>
+                  </li>
+                </ul>
+              </div>
+          </div>
+      </nav>
+
+    <div class="container-fluid content-container py-5">
+        <h1 class="mb-4 display-3 text-center">Tabbit Dashboard</h1>
+    
+        <!-- Tasks Section -->
+        <div class="card my-5 mx-2 shadow">
+          <div class="card-header mt-3">
+            <h4 class="display-6">Your Tasks</h4>
+          </div>
+          <div class="card-body my-2">
+            <!-- Tabs for task status/urgency categories -->
+            <ul class="nav nav-tabs" id="tasksTabs" role="tablist">
+              <li class="nav-item" role="presentation">
+                <button class="nav-link dashboard-nav-link active bg-light text-danger" id="urgent-tab" data-bs-toggle="tab" data-bs-target="#urgent" type="button" role="tab">Urgent</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link dashboard-nav-link bg-light text-warning" id="regular-tab" data-bs-toggle="tab" data-bs-target="#regular" type="button" role="tab">Regular</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link dashboard-nav-link bg-light text-info" id="low-pri-tab" data-bs-toggle="tab" data-bs-target="#low-pri" type="button" role="tab">Low-priority</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link dashboard-nav-link bg-light text-success" id="completed-tab" data-bs-toggle="tab" data-bs-target="#completed" type="button" role="tab">Completed</button>
+              </li>
+            </ul>
+            <div class="tab-content" id="tasksTabsContent">
+              <!-- Urgent Tasks Tab -->
+              <div class="tab-pane fade show active" id="urgent" role="tabpanel">
+                <!-- BONUS: Task details and link to detail page are displayed in accordion -->
+
+                <div class="accordion" id="urgentTasksAccordion">
+                    <div class="accordion-item">
+                      <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                          Debug project
+                        </button>
+                      </h2>
+                      <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#urgentTasksAccordion">
+                        <div class="accordion-body">
+                            <ul class="list-group">
+                                <li class="list-group-item" id="task-description">
+                                    <strong>Description:</strong>
+                                    Empty.
+                                </li>
+                                <li class="list-group-item" id="task-due-date">
+                                    <strong>Due date:</strong>
+                                    09/24/2024
+                                </li>
+                                <li class="list-group-item" id="task-details">
+                                    <a href="task-details.html?name=Debug%20project&urgency=Urgent&dueDate=2024-09-24" class="task-link">Details Page</a>
+                                </li>
+                            </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTwo">
+                          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Prepare presentation
+                          </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#urgentTasksAccordion">
+                          <div class="accordion-body">
+                              <ul class="list-group">
+                                  <li class="list-group-item" id="task-description">
+                                      <strong>Description:</strong>
+                                      Empty.
+                                  </li>
+                                  <li class="list-group-item" id="task-due-date">
+                                      <strong>Due date:</strong>
+                                      09/25/2024
+                                  </li>
+                                  <li class="list-group-item" id="task-details">
+                                      <a href="task-details.html?name=Prepare%20presentation&urgency=Urgent&dueDate=2024-09-25" class="task-link">Details Page</a>
+                                  </li>
+                              </ul>
+                          </div>
+                        </div>
+                      </div>
+              </div></div>
+              <!-- Regular Tasks Tab -->
+              <div class="tab-pane fade" id="regular" role="tabpanel">
+                                <!-- BONUS: Task details and link to detail page are displayed in accordion -->
+                <div class="accordion" id="regularTasksAccordion">
+                    <div class="accordion-item">
+                      <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                            Workout PT session
+                        </button>
+                      </h2>
+                      <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#regularTasksAccordion">
+                        <div class="accordion-body">
+                            <ul class="list-group">
+                                <li class="list-group-item" id="task-description">
+                                    <strong>Description:</strong>
+                                    Empty.
+                                </li>
+                                <li class="list-group-item" id="task-due-date">
+                                    <strong>Due date:</strong>
+                                    09/24/2024
+                                </li>
+                                <li class="list-group-item" id="task-details">
+                                    <a href="task-details.html?name=Workout%20PT%20session&urgency=Regular&dueDate=2024-09-24" class="task-link">Details Page</a>
+                                </li>
+                            </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTwo">
+                          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Meal prep
+                          </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#regularTasksAccordion">
+                          <div class="accordion-body">
+                              <ul class="list-group">
+                                  <li class="list-group-item" id="task-description">
+                                      <strong>Description:</strong>
+                                      Empty.
+                                  </li>
+                                  <li class="list-group-item" id="task-due-date">
+                                      <strong>Due date:</strong>
+                                      09/27/2024
+                                  </li>
+                                  <li class="list-group-item" id="task-details">
+                                      <a href="task-details.html?name=Meal%20prep&urgency=Regular&dueDate=2024-09-27" class="task-link">Details Page</a>
+                                  </li>
+                              </ul>
+                          </div>
+                        </div>
+                      </div>
+              </div>
+              </div>
+              <!-- Low Priority Tasks Tab -->
+              <div class="tab-pane fade" id="low-pri" role="tabpanel">
+                                <!-- BONUS: Task details and link to detail page are displayed in accordion -->
+                <div class="accordion" id="lowPriAccordion">
+                    <div class="accordion-item">
+                      <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                            Refactor design
+                        </button>
+                      </h2>
+                      <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#lowPriAccordion">
+                        <div class="accordion-body">
+                            <ul class="list-group">
+                                <li class="list-group-item" id="task-description">
+                                    <strong>Description:</strong>
+                                    Empty.
+                                </li>
+                                <li class="list-group-item" id="task-due-date">
+                                    <strong>Due date:</strong>
+                                    09/24/2024
+                                </li>
+                                <li class="list-group-item" id="task-details">
+                                    <a href="task-details.html?name=Refactor%20design&urgency=Low-priority&dueDate=2024-09-24" class="task-link">Details Page</a>
+                                </li>
+                            </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTwo">
+                          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Coffee with Lina
+                          </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#lowPriAccordion">
+                          <div class="accordion-body">
+                              <ul class="list-group">
+                                  <li class="list-group-item" id="task-description">
+                                      <strong>Description:</strong>
+                                      Empty.
+                                  </li>
+                                  <li class="list-group-item" id="task-due-date">
+                                      <strong>Due date:</strong>
+                                      09/27/2024
+                                  </li>
+                                  <li class="list-group-item" id="task-details">
+                                      <a href="task-details.html?name=Coffee%20With%20Lina&urgency=Low-priority&dueDate=2024-09-27" class="task-link">Details Page</a>
+                                  </li>
+                              </ul>
+                          </div>
+                        </div>
+                      </div>
+              </div>
+              </div>
+              <!-- Completed Tasks Tab -->
+              <div class="tab-pane fade" id="completed" role="tabpanel">
+                                <!-- BONUS: Task details and link to detail page are displayed in accordion -->
+                <div class="accordion" id="completedAccordion">
+                    <div class="accordion-item">
+                      <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                            Code review
+                        </button>
+                      </h2>
+                      <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#completedAccordion">
+                        <div class="accordion-body">
+                            <ul class="list-group">
+                                <li class="list-group-item" id="task-description">
+                                    <strong>Description:</strong>
+                                    Empty.
+                                </li>
+                                <li class="list-group-item" id="task-due-date">
+                                    <strong>Due date:</strong>
+                                    09/21/2024
+                                </li>
+                                <li class="list-group-item" id="task-details">
+                                    <a href="task-details.html?name=Code%20review&urgency=Completed&dueDate=2024-09-21" class="task-link">Details Page</a>
+                                </li>
+                            </ul>
+                        </div>
+                      </div>
+                    </div>
+                    </div>
+              </div>
+              <div class="row my-4 text-center justify-content-center">
+                <a role="button" href="task-create.html" class="btn btn-success shadow-lg" style="width:50%;">+ Add New Task</a>
+            </div>
+            </div>
+          </div>
+        </div>
+    
+    
+        <!-- Progress Visualization Section -->
+        <div class="card my-5 mx-2 shadow">
+          <div class="card-header mt-2">
+            <h4 class="display-6">Task Progress</h4>
+          </div>
+          <div class="card-body mt-2 p-3">
+            <div class="row">
+              <!-- Progress Bars -->
+              <div class="col-md-6 mb-3">
+                <h5 class="fw-lighter">Task Completion Progress</h5>
+                <p>Urgent tasks:</p>
+                <div class="progress mb-3">
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">70%</div>
+                </div>
+                <p>Regular tasks:</p>
+                <div class="progress mb-3">
+                  <div class="progress-bar bg-warning" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50%</div>
+                </div>
+                <p>Low-priority tasks:</p>
+                <div class="progress mb-3">
+                  <div class="progress-bar bg-info" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">30%</div>
+                </div>
+              </div>
+              <!-- Charts -->
+              <div class="col-md-6 mb-3">
+                <h5 class="fw-lighter">Task Distribution</h5>
+                <canvas id="taskChart"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+    
+      </div>
+    
+    
+      <!-- Chart.js for task distribution visualization -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Custom JS for Chart -->
+  <script>
+    var ctx = document.getElementById('taskChart').getContext('2d');
+    var taskChart = new Chart(ctx, {
+      type: 'pie',
+      data: {
+        labels: ['Completed', 'Pending', 'In Progress'],
+        datasets: [{
+          label: 'Tasks',
+          data: [12, 5, 8],
+          backgroundColor: ['#28a745', '#ffc107', '#007bff']
+        }]
+      }
+    });
+  </script>
+
+</body>

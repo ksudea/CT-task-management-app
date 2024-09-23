@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!--head includes meta for responsive design-->
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task Details</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="js/bootstrap.js"></script>
+
+</head>
+<body>
+
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light border-bottom border-body" data-bs-theme="light">
+        <!-- Navbar content -->
+        <div class="container-fluid py-1">
+            <a class="navbar-brand navbar-logo" href="home.html">
+                <img src="logo.png" alt="" width="72" height="48">
+              </a>          
+            <a class="navbar-brand" href="home.html">Tabbit</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link" href="home.html">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link"  aria-current="page"  href="dashboard.html">Dashboard</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="task-create.html">Add Task</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="register.html">Register</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active" href="login-page.html">Login</a>
+                  </li>
+                </ul>
+              </div>
+          </div>
+      </nav>
+  <div class="container-fluid content-container py-5">
+    <h1 class="my-4">Task Details</h1>
+
+    <div class="card card my-4 mx-2">
+      <div class="card-header">
+        <h4 id="task-name"></h4> <!-- Task name will be inserted here -->
+      </div>
+      <div class="card-body">
+        <form id="task-form">
+            <!-- Task Name -->
+            <div class="mb-3">
+              <label for="task-name" class="form-label"><strong>Task Name:</strong></label>
+              <p id="task-name-text"></p> <!-- Static text -->
+              <input type="text" class="form-control d-none" id="task-name-input"> <!-- Editable input for task name -->
+            </div>
+  
+            <!-- Status -->
+            <div class="mb-3">
+              <label for="task-urgency" class="form-label"><strong>Status/Urgency:</strong></label>
+              <p id="task-urgency-text"></p> 
+              <select class="form-select d-none" id="task-urgency-input"> 
+                <option value="Urgent">Urgent</option>
+                <option value="Regular">Regular</option>
+                <option value="Low-priority">Low-priority</option>
+                <option value="Completed">Completed</option>
+              </select>
+            </div>
+
+            <!-- Task Description -->
+             <div class="mb-3">
+                <label for="task-description" class="form-label"><strong>Description:</strong></label>
+                <span id="task-description-text"></span>
+                <textarea id="task-description-input" class="d-none"></textarea>
+            </div>
+  
+            <!-- Task Due Date -->
+            <div class="mb-3">
+                <label for="task-due-date" class="form-label"><strong>Due date:</strong></label>
+                <span id="task-due-date-text"></span>
+                <input type="date" id="task-due-date-input" class="d-none">
+            </div>
+  
+  
+            <!-- Buttons -->
+            <div class="container-fluid my-2 mx-2 text-center justify-content-center">
+              <button type="button" id="edit-btn" class="btn btn-primary">Edit</button>
+              <button type="button" id="save-btn" class="btn btn-success d-none mx-1">Save</button>
+              <button type="button" id="cancel-btn" class="btn btn-secondary d-none mx-1">Cancel</button>
+            </div>
+          </form>
+          <div class="container-fluid my-3 mx-2 text-center justify-content-center">
+            <button onclick="window.history.back()" class="btn btn-secondary">Back to Dashboard</button>
+          </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript to Extract URL Parameters and Populate the Page -->
+  <script>
+    function getUrlParams() {
+      let params = new URLSearchParams(window.location.search);
+      return {
+        name: params.get('name'),
+        urgency: params.get('urgency'),
+        description: params.get('description'),
+        dueDate: params.get('dueDate')
+
+      };
+    }
+
+    // toggle b/w display and edit mode
+    function toggleEditMode(isEditMode) {
+      //  text and input fields
+      document.getElementById('task-name-text').classList.toggle('d-none', isEditMode);
+      document.getElementById('task-name-input').classList.toggle('d-none', !isEditMode);
+      document.getElementById('task-urgency-text').classList.toggle('d-none', isEditMode);
+      document.getElementById('task-urgency-input').classList.toggle('d-none', !isEditMode);
+      
+    document.getElementById('task-description-text').classList.toggle('d-none', isEditMode);
+    document.getElementById('task-description-input').classList.toggle('d-none', !isEditMode);
+
+     document.getElementById('task-due-date-text').classList.toggle('d-none', isEditMode);
+     document.getElementById('task-due-date-input').classList.toggle('d-none', !isEditMode);
+
+
+      // buttons
+      document.getElementById('edit-btn').classList.toggle('d-none', isEditMode);
+      document.getElementById('save-btn').classList.toggle('d-none', !isEditMode);
+      document.getElementById('cancel-btn').classList.toggle('d-none', !isEditMode);
+    }
+
+    // Populate task details
+    function populateTaskDetails() {
+      const taskDetails = getUrlParams();
+      const taskName = taskDetails.name || "No Task Name Provided";
+      const taskUrgency = taskDetails.urgency || "No Urgency Provided";
+      const taskDescription = taskDetails.description || "No Description Provided";
+      const taskDueDate = taskDetails.dueDate || "No Due Date Provided";
+
+      // values for display
+      document.getElementById('task-name').textContent = taskName;
+      document.getElementById('task-name-text').textContent = taskName;
+      document.getElementById('task-urgency-text').textContent = taskUrgency;
+      document.getElementById('task-description-text').textContent = taskDescription;
+      document.getElementById('task-due-date-text').textContent = taskDueDate;
+
+      // values for input fields
+      document.getElementById('task-name-input').value = taskName;
+      document.getElementById('task-urgency-input').value = taskUrgency;
+      document.getElementById('task-description-input').value = taskDescription;
+      document.getElementById('task-due-date-input').value = taskDueDate;
+
+    }
+
+    // Save edited task details
+    function saveTaskDetails() {
+      // Get values from input fields
+      const taskNameInput = document.getElementById('task-name-input').value;
+      const taskUrgencyInput = document.getElementById('task-urgency-input').value;
+      const taskDescriptionInput = document.getElementById('task-description-input').value;
+      const taskDueDateInput = document.getElementById('task-due-date-input').value;
+
+      console.log('Task Name (Input):', taskNameInput);
+
+      // Update display values with the new values
+      document.getElementById('task-name').textContent = taskNameInput;
+      document.getElementById('task-name-text').textContent = taskNameInput;
+      document.getElementById('task-urgency-text').textContent = taskUrgencyInput;
+      document.getElementById('task-description-text').textContent = taskDescriptionInput;
+      document.getElementById('task-due-date-text').textContent = taskDueDateInput;
+
+      // back to display mode
+      toggleEditMode(false);
+    }
+
+    // Cancel editing and revert to original values
+    function cancelEdit() {
+      // Revert input fields to their original values
+      document.getElementById('task-name-input').value = document.getElementById('task-name-text').textContent;
+      document.getElementById('task-urgency-input').value = document.getElementById('task-urgency-text').textContent;
+
+      // Toggle back to display mode without saving changes
+      toggleEditMode(false);
+    }
+
+    // Set up event listeners for buttons
+    window.onload = function() {
+      // Populate task details on page load
+      populateTaskDetails();
+
+      // Edit button click
+      document.getElementById('edit-btn').addEventListener('click', function() {
+        console.log("Edit mode true");
+        toggleEditMode(true);
+      });
+
+      // Save button click
+      document.getElementById('save-btn').addEventListener('click', function() {
+        console.log("save mode true");
+        saveTaskDetails();
+      });
+
+      // Cancel button click
+      document.getElementById('cancel-btn').addEventListener('click', function() {
+        cancelEdit();
+      });
+    };
+
+  </script>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+ 
+      
+</body>
